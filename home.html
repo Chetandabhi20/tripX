@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover,
+        .nav ul li a:focus {
+            background: #43c6ac;
+            color: #222;
+        }
+
+        .greet {
+            text-align: center;
+            margin-top: 100px;
+            font-size: xx-large;
+        }
+        .greet h1 {
+            color: #f9fcfc;
+        }
+        .greet p {
+            color: #f9fcfc;
+            font-size: xx-large;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .buttons button {
+            border: none;
+            margin-inline-end: 25px;
+            height: 40px;
+            width: 100px;
+            border-radius: 10px;
+            font-size: 25px;
+            font-weight: 600;
+            font-family: comic 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(83, 86, 84, 0.8);
+            color: white;
+        }
+
+        .popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(34, 34, 34, 0.9);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .close-popup {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            border: 1px solid #43c6ac;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #43c6ac;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            background: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 5px;
+            background: #222;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity:0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .bg-slide.active {
+            opacity: 1;
+        }
+
+        /* Modify body style to support transparency */
+        body {
+            position: relative;
+            background: none;
+        }
+
+        /* Add overlay to improve content readability */
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+            /* background: rgba(255, 255, 255, 0.01); */
+            min-height: 50vh;
+            /* backdrop-filter: blur(5px); */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expanse</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+    <div class="background-slider">
+        <div class="bg-slide active" style="background-image: url('photos/train.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/rusikesh.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/whitehills.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/hill.jpg')"></div>
+    </div>
+    <div class="content-overlay">
+        <div class="greet">
+            <h1>Welcome to TripX</h1>
+            <p>Your trip guide is here</p>
+        </div>
+        <div class="buttons">
+            <!-- <a href="addtrip.html"><button>add trip</button></a> -->
+            <a href="login.html"><button>Log in</button></a>
+            <a href="signup.html"><button>Sign up</button></a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 tripX. All rights reserved.</p>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const bgSlides = document.querySelectorAll('.bg-slide');
+        let currentBgSlide = 0;
+
+        function changeBackground() {
+            // Remove active class from all slides
+            bgSlides.forEach(slide => slide.classList.remove('active'));
+
+            // Add active class to next slide
+            currentBgSlide = (currentBgSlide + 1) % bgSlides.length;
+            bgSlides[currentBgSlide].classList.add('active');
+        }
+
+        // Change background every 2 seconds
+        setInterval(changeBackground, 4000);
+    </script>
+</body>
+
+</html>

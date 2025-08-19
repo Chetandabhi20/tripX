@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addtrips</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+         body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover, .nav ul li a:focus {
+            background: #43c6ac;
+            color: #222;
+        }
+        .info{
+            display: grid;
+            height: 80vh;
+            width: 30vw;
+            margin: auto;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        .info textarea{
+            height: 75%;
+        }
+        .button button{
+            height: 40px;
+            width: 80px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgb(15, 222, 233) 0%,yellow 100%);
+
+        }
+        .button{
+            display: grid;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+     <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expense</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+    <div class="info">
+        <label for="Name">Trip Name:</label>
+        <input type="text" name="Name" id="Name"><br>
+        <label for="trip">Source:</label>
+        <input type="text" id="trip" name="trip"><br>
+        <label for="trip">Destination:</label>
+        <input type="text" id="trip" name="trip"><br>
+        <label for="date">Starting Date:</label>
+        <input type="date" id="date"><br>
+        <label for="date">Ending Date:</label>
+        <input type="date" id="date"><br>
+        <label for="extra">Lable:</label>
+        <textarea name="extra" id="extra"></textarea>
+        <div class="button">
+        <a href="home.html"><button>Add trip</button></a>
+        </div>
+    </div>
+
+</body>
+</html>

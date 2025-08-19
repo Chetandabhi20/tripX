@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Trip Planner</title>
+    <!-- <link rel="stylesheet" href="../css/login.css"> -->
+     <style>
+        body{
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            min-height: 100vh;        }
+        header{
+            text-align: center;
+        }
+        .login-container{
+            display: grid;
+            margin: auto;
+            width: 25vw;
+            height: 100vh;
+        }
+        /* .login-container input{
+            height: 20%;
+        }
+        .login-container label{
+            position: relative;
+            top: 80px;
+        }*/
+        .login-container button{ 
+            height: 40px;
+            width: 80px;
+            position: relative;
+            /* bottom: 30px; */
+            font-size: larger;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #aff016 0%, #c968ba 100%)
+        }
+        .button{
+            display: grid;
+            justify-content: center;
+        }
+        footer{
+            position: fixed;
+            bottom: 0px;
+        }
+        .user{
+            display: grid;
+            height: 40%;
+        }
+        .pass{
+            display: grid;
+            height: 40%;
+        }
+        
+     </style>
+</head>
+<body>
+    <header>
+        <h1>Login to TripX</h1>
+    </header>
+    <div class="login-container">
+        
+            <div class="user">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            </div>
+            <div class="pass">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <a href="forgot.html">forgot password?</a>
+            </div>
+            <div class="button">
+            <a href="home.html"><button>Log In</button></a>
+            </div>
+    
+        <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </div>
+    <script>
+        document.querySelector('button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (password.length < 16 && password.length > 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            window.location.href = 'home.html';
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 TripX. All rights reserved.</p>
+    </footer>
+    </body>
+</html>

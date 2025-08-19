@@ -1,0 +1,94 @@
+<html>
+
+<head>
+  <!-- <link rel="stylesheet" href="nav.css"> -->
+  <style>
+    body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover, .nav ul li a:focus {
+            background: #43c6ac;
+            color: #222;
+        }
+    .profile-card {
+      
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+    .profile-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
+    .btn-edit {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .trip-stats {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+   <div class="nav">
+      <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expense</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+  <div class="profile-card">
+     <img src="C:\Users\cheta\OneDrive\Desktop\24DCE026\Web\lab\p1\IMG_20220609_140859_563.jpg" alt="User Photo" class="profile-photo">
+
+     <h2>Hi, Chetan Dabhi!</h2>
+     <label for="mnub">mobile number:</label>
+     <label for="mnub">+91 938478526</label><br>
+     <label for="mail">E-mail:</label><label for="mail">chetandabhixyz@gmail.com</label>
+    <ul class="trip-stats">
+      <li><strong>Upcoming Trips:</strong> 2</li>
+      <li><strong>Past Trips:</strong> 5</li>
+      <li><strong>Wishlist:</strong> 8 destinations</li>
+    </ul>
+
+    <a href="/edit-profile" class="btn-edit">Edit Profile</a>
+    <a href="landing.html" class="btn-edit">log out</a>
+  </div>
+</body>
+
+</html>

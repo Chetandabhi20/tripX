@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exdpanse</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            text-align: center;
+        }
+        .box{
+            border: solid black;
+            height: 40vh;
+            width: 30vw;
+            margin: auto;
+        }
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover, .nav ul li a:focus {
+            background: #43c6ac;
+            color: #222;
+        }
+
+        header h2 {
+            margin: 30px 0 20px 0;
+            color: #222;
+            letter-spacing: 1px;
+            font-size: 2rem;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 8px 24px rgba(67,198,172,0.15);
+            border-radius: 16px;
+            padding: 32px 24px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info label, .members label {
+            font-size: 1rem;
+            color: #333;
+            margin-right: 8px;
+        }
+
+        .info input[type="text"] {
+            padding: 8px;
+            margin: 8px 0 16px 0;
+            border: 1px solid #43c6ac;
+            border-radius: 6px;
+            width: 90%;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+
+        .info input[type="text"]:focus {
+            border: 2px solid #43c6ac;
+            outline: none;
+        }
+
+        .members {
+            margin-bottom: 16px;
+        }
+
+        .members input[type="checkbox"] {
+            accent-color: #43c6ac;
+            margin-right: 4px;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        .buttons button {
+            background: linear-gradient(130deg, #14acf3 0%, #b1c00d 100%);
+            color: #222;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(67,198,172,0.15);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        /* .buttons button:hover {
+            background: linear-gradient(90deg, #f8ffae 0%, #43c6ac 100%);
+            transform: translateY(-2px) scale(1.04);
+        } */
+
+    </style>
+</head>
+
+<body>
+     <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expense</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+    <header>
+        <h2>Add Your Expenses Here!</h2>
+    </header>
+    <div class="box">
+        <div class="info">
+            <label for="expanse_details">Enter Expense Details:</label>
+            <input type="text" id="expanse_details" name="expanse_details"><br>
+            <label for="amm">Amount:</label>
+            <input type="text" id="amm" name="amm" placeholder="Enter Amount of Expense"><br>
+        </div>
+        <div class="members">
+            <label for="pepople">Choose members:</label>
+            <input type="checkbox" id="names" name="names">
+            <label for="names">Chetan</label>
+            <input type="checkbox" id="names" name="names">
+            <label for="names">Kurnal</label>
+            <input type="checkbox" name="names" id="names">
+            <label for="names">Tirth</label>
+    </div>
+    <div class="buttons">
+            <a href=""><button>Add Expense</button></a>
+    </div>
+    </div>
+</body>
+
+</html>

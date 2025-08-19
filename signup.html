@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Trip Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 25px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #dc7226 0%, #01280f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .signup-form {
+            display: grid;
+            margin: auto;
+            height: 70vh;
+            width: 25vw;
+        }
+
+        .signup-form input {
+            height: 50%;
+        }
+
+        .signup-form label {
+            position: relative;
+            top: 20px;
+        }
+
+        .button {
+            display: grid;
+            justify-content: center;
+        }
+
+        .button button {
+            height: 30px;
+            width: 80px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgb(67, 237, 249) 0%, yellow 100%);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            min-height: 100vh;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Create Your Account</h1>
+    </header>
+
+    <form id="form" action="home.html">
+        <div class="signup-form">
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+            <div class="button">
+                <button type="submit">Sign Up</button>
+            </div>
+
+            <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+        </div>
+    </form>
+
+    <footer>
+        <p>&copy; 2025 Trip Planner. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (username === "") {
+                alert("Username is required.");
+                e.preventDefault();
+                return;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Invalid email format.");
+                e.preventDefault();
+                return;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                e.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                e.preventDefault();
+                return;
+            }
+            const mobile = document.getElementById("mobile").value.trim();
+            const indianMobilePattern = /^[6-9]\d{9}$/;
+
+            if (!indianMobilePattern.test(mobile)) {
+                alert("Please enter a valid Indian mobile number (10 digits starting with 6-9)");
+                e.preventDefault();
+                return;
+            }
+
+        });
+    </script>
+</body>
+
+</html>

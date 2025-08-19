@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .slider-container {
+            position: relative;
+            height: 60vh;
+            width: 40vw;
+            margin: auto;
+            margin-top: 20px;
+            overflow: hidden;
+            border: solid black;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .slider-buttons button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .person {
+            display: flex;
+            margin-top: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .person span {
+            display: block;
+            border: solid black;
+            border-radius: 90px;
+            height: 75px;
+            width: 75px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .person span:hover {
+            transform: scale(1.1);
+            border-color: #43c6ac;
+        }
+
+        .person span.active {
+            border: 3px solid #43c6ac;
+        }
+
+        .person span img {
+            height: 73px;
+            width: 73px;
+            border-radius: 89px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover, .nav ul li a:focus {
+            background: #43c6ac;
+            color: #222;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+       <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expense</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="/p1/html/photos/download.jpg" alt="trip1">
+            </div>
+            <div class="slide">
+                <img src="/p1/html/photos/img1.jpg" alt="trip2">
+            </div>
+            <div class="slide">
+                <img src="/p1/html/photos/msid-112642305,width-96,height-65.cms" alt="trip3">
+            </div>
+            <div class="slide">
+                <img src="photos/boating.jpg" alt="trip4">
+            </div>
+            <div class="slide">
+                <img src="photos/hill.jpg" alt="trip5">
+            </div>
+            <div class="slide">
+                <img src="photos/treaking.jpg" alt="trip6">
+            </div>
+            <div class="slide">
+                <img src="photos/goa.jpg" alt="trip7">
+            </div>
+        </div>
+        <div class="slider-buttons">
+            <button onclick="prevSlide()">❮</button>
+            <button onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+
+    <div class="person">
+        <span onclick="filterPhotos(0)" class="active"><img src="photos/download (1).jpg" alt="User 1"></span>
+        <span onclick="filterPhotos(1)"><img src="photos/download (1).jpg" alt="User 2"></span>
+        <span onclick="filterPhotos(2)"><img src="photos/download (1).jpg" alt="User 3"></span>
+        <span onclick="filterPhotos(3)"><img src="photos/download (1).jpg" alt="User 4"></span>
+        <span onclick="filterPhotos(4)"><img src="photos/download (1).jpg" alt="User 5"></span>
+        <span onclick="filterPhotos(5)"><img src="photos/download (1).jpg" alt="User 6"></span>
+        <span onclick="filterPhotos(6)"><img src="photos/download (1).jpg" alt="User 7"></span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function filterPhotos(userIndex) {
+            // Remove active class from all spans
+            document.querySelectorAll('.person span').forEach(span => {
+                span.classList.remove('active');
+            });
+            
+            // Add active class to clicked span
+            document.querySelectorAll('.person span')[userIndex].classList.add('active');
+            
+            // Reset to first slide
+            currentSlide = 0;
+            updateSlider();
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+
+</html>

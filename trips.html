@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trips</title>
+    <!-- <link rel="stylesheet" href="nav.css"> -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover, .nav ul li a:focus {
+            background: #43c6ac;
+            color: #222;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .list{
+            display: grid;
+            justify-content: center;
+        }
+        .list ol li{
+            font-size: larger;
+            font-weight: 600;
+            background: #f8ffae;
+            list-style: none;
+            margin: 5px;
+            width: 25vw;
+        }
+        .buttons{
+            display:  grid;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .buttons button{
+            height: 40px;
+            width: 80px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgb(39, 193, 213) 0%,yellow 100%);
+        }
+    </style>
+</head>
+<body>
+     <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expense</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+    <div class="list">
+        <ol>
+            <li>Dwarka</li>
+            <li>Somnath</li>
+            <li>Diu</li>
+            <li>Goa</li>
+            <li>Manali</li>
+        </ol>
+    </div>
+    <div class="buttons">
+        <a href="addtrip.html"><button>Add trip</button></a>
+        
+    </div>
+</body>
+</html>
