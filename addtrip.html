@@ -3,68 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>addtrips</title>
-    <link rel="stylesheet" href="nav.css">
+    <title>Add New Trip</title>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-         body {
-            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
-            font-family: 'Segoe UI', Arial, sans-serif;
-            min-height: 100vh;
-        }
-
-        .nav ul {
-            list-style: none;
-            background: #222;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 3px;
-        }
-
-        .nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .nav ul li a:hover, .nav ul li a:focus {
-            background: #43c6ac;
-            color: #222;
-        }
-        .info{
-            display: grid;
-            height: 80vh;
-            width: 30vw;
-            margin: auto;
-            margin-top: 10px;
-            font-weight: 500;
-        }
-        .info textarea{
-            height: 75%;
-        }
-        .button button{
-            height: 40px;
-            width: 80px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, rgb(15, 222, 233) 0%,yellow 100%);
-
-        }
-        .button{
-            display: grid;
-            justify-content: center;
-            margin-top: 10px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%); font-family: 'Segoe UI', Arial, sans-serif; min-height: 100vh; }
+        .nav ul { list-style: none; background: #222; padding: 10px 0; display: flex; justify-content: center; gap: 30px; }
+        .nav ul li a { color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 4px; transition: background 0.2s; }
+        .nav ul li a:hover { background: #43c6ac; color: #222; }
+        .container { max-width: 600px; margin: 30px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        h1 { text-align: center; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        input, textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; }
+        textarea { height: 120px; resize: vertical; }
+        button { width: 100%; padding: 15px; border: none; border-radius: 6px; background: linear-gradient(135deg, #43c6ac 0%, #2c8c7c 100%); color: white; font-size: 18px; cursor: pointer; transition: transform 0.2s; }
+        button:hover { transform: translateY(-2px); }
+        .message { text-align: center; padding: 10px; border-radius: 5px; margin-top: 20px; display: none; }
+        .message.success { background-color: #DFF2BF; color: #4F8A10; }
+        .message.error { background-color: #FFD2D2; color: #D8000C; }
     </style>
 </head>
 <body>
-     <div class="nav">
+    <div class="nav">
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="trips.html">Trips</a></li>
@@ -74,23 +34,71 @@
             <li><a href="photos.html">Photos</a></li>
         </ul>
     </div>
-    <div class="info">
-        <label for="Name">Trip Name:</label>
-        <input type="text" name="Name" id="Name"><br>
-        <label for="trip">Source:</label>
-        <input type="text" id="trip" name="trip"><br>
-        <label for="trip">Destination:</label>
-        <input type="text" id="trip" name="trip"><br>
-        <label for="date">Starting Date:</label>
-        <input type="date" id="date"><br>
-        <label for="date">Ending Date:</label>
-        <input type="date" id="date"><br>
-        <label for="extra">Lable:</label>
-        <textarea name="extra" id="extra"></textarea>
-        <div class="button">
-        <a href="home.html"><button>Add trip</button></a>
-        </div>
+    <div class="container">
+        <h1>Add a New Trip</h1>
+        <form id="add-trip-form">
+            <div class="form-group">
+                <label for="trip_name">Trip Name:</label>
+                <input type="text" name="trip_name" id="trip_name" required>
+            </div>
+            <div class="form-group">
+                <label for="source">Source:</label>
+                <input type="text" id="source" name="source" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Starting Date:</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">Ending Date:</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description (Optional):</label>
+                <textarea name="description" id="description"></textarea>
+            </div>
+            <button type="submit">Add Trip</button>
+        </form>
+        <div id="form-message" class="message"></div>
     </div>
 
+    <script>
+    document.getElementById('add-trip-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const messageDiv = document.getElementById('form-message');
+
+        fetch('addtrip.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageDiv.textContent = data.message;
+            messageDiv.style.display = 'block';
+            if (data.success) {
+                messageDiv.className = 'message success';
+                form.reset();
+                setTimeout(() => {
+                    window.location.href = 'trips.html'; // Redirect after success
+                }, 2000);
+            } else {
+                messageDiv.className = 'message error';
+            }
+        })
+        .catch(error => {
+            messageDiv.textContent = 'An error occurred. Please try again.';
+            messageDiv.className = 'message error';
+            messageDiv.style.display = 'block';
+            console.error('Error:', error);
+        });
+    });
+    </script>
 </body>
 </html>

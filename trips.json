@@ -1,0 +1,47 @@
+{
+    "trips": [
+        {
+            "id": 1,
+            "title": "Goa Beach Adventure",
+            "image": "photos/goa.jpg",
+            "startDate": "2025-12-15",
+            "endDate": "2025-12-20",
+            "status": "upcoming",
+            "location": "Goa, India",
+            "members": [
+                { "name": "John", "avatar": "photos/img1.jpg" },
+                { "name": "Alice", "avatar": "photos/img1.jpg" },
+                { "name": "Bob", "avatar": "photos/img1.jpg" }
+            ],
+            "description": "Beach fun and water sports"
+        },
+        {
+            "id": 2,
+            "title": "Manali Trek",
+            "image": "photos/hill.jpg",
+            "startDate": "2025-11-01",
+            "endDate": "2025-11-05",
+            "status": "upcoming",
+            "location": "Manali, Himachal Pradesh",
+            "members": [
+                { "name": "Sarah", "avatar": "photos/img1.jpg" },
+                { "name": "Mike", "avatar": "photos/img1.jpg" }
+            ],
+            "description": "Mountain trekking and camping"
+        },
+        {
+            "id": 3,
+            "title": "Dwarka Temple Visit",
+            "image": "photos/whitehills.jpg",
+            "startDate": "2025-09-10",
+            "endDate": "2025-09-15",
+            "status": "completed",
+            "location": "Dwarka, Gujarat",
+            "members": [
+                { "name": "Raj", "avatar": "photos/img1.jpg" },
+                { "name": "Priya", "avatar": "photos/img1.jpg" }
+            ],
+            "description": "Spiritual journey and sightseeing"
+        }
+    ]
+}

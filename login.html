@@ -3,98 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Trip Planner</title>
-    <!-- <link rel="stylesheet" href="../css/login.css"> -->
-     <style>
-        body{
-            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
-            min-height: 100vh;        }
-        header{
-            text-align: center;
+    <title>Login - TripX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .login-container{
-            display: grid;
-            margin: auto;
-            width: 25vw;
-            height: 100vh;
-        }
-        /* .login-container input{
-            height: 20%;
-        }
-        .login-container label{
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
             position: relative;
-            top: 80px;
-        }*/
-        .login-container button{ 
-            height: 40px;
-            width: 80px;
-            position: relative;
-            /* bottom: 30px; */
-            font-size: larger;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #aff016 0%, #c968ba 100%)
         }
-        .button{
-            display: grid;
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
             justify-content: center;
+            gap: 30px;
         }
-        footer{
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover {
+            background: #43c6ac;
+            color: #222;
+        }
+
+        .background-slider {
             position: fixed;
-            bottom: 0px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
-        .user{
-            display: grid;
-            height: 40%;
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-        .pass{
-            display: grid;
-            height: 40%;
+
+        .bg-slide.active {
+            opacity: 1;
         }
-        
-     </style>
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #222;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .user, .pass {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #222;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #43c6ac;
+            outline: none;
+        }
+
+        .button {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #43c6ac 0%, #2c8c7c 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-container p {
+            text-align: center;
+            color: #666;
+        }
+
+        .login-container a {
+            color: #43c6ac;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #222;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Login to TripX</h1>
-    </header>
+    <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expanse</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
+
+    <div class="background-slider">
+        <div class="bg-slide active" style="background-image: url('photos/train.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/rusikesh.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/whitehills.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/hill.jpg')"></div>
+    </div>
+
     <div class="login-container">
+        <header>
+            <h1>Welcome Back!</h1>
+        </header>
+        <form action="" method="post">
+
+        <div class="user">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
         
-            <div class="user">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            </div>
-            <div class="pass">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <a href="forgot.html">forgot password?</a>
-            </div>
-            <div class="button">
-            <a href="home.html"><button>Log In</button></a>
-            </div>
-    
+        <div class="pass">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <a href="forgot.html" style="display: block; margin-top: 8px; text-align: right;">Forgot password?</a>
+        </div>
+        
+        <div class="button">
+            <button>Log In</button>
+        </div>
+        
         <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
     </div>
+    </form>
+    <div class="footer">
+        <p>&copy; 2025 TripX. All rights reserved.</p>
+    </div>
+
     <script>
-        document.querySelector('button').addEventListener('click', function(e) {
-            e.preventDefault();
+        // Background slider functionality
+        const bgSlides = document.querySelectorAll('.bg-slide');
+        let currentBgSlide = 0;
+
+        function changeBackground() {
+            bgSlides.forEach(slide => slide.classList.remove('active'));
+            currentBgSlide = (currentBgSlide + 1) % bgSlides.length;
+            bgSlides[currentBgSlide].classList.add('active');
+        }
+
+        setInterval(changeBackground, 4000);
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
             if (!username || !password) {
+                e.preventDefault();
                 alert('Please fill in all fields');
                 return;
             }
             
-            if (password.length < 16 && password.length > 8) {
-                alert('Password must be at least 8 characters long');
+            if (password.length < 8 || password.length > 16) {
+                e.preventDefault();
+                alert('Password must be between 8 and 16 characters long');
                 return;
             }
-            
-            window.location.href = 'home.html';
         });
-    </script>
-    <footer>
-        <p>&copy; 2025 TripX. All rights reserved.</p>
-    </footer>
-    </body>
+    </script> 
+</body>
 </html>

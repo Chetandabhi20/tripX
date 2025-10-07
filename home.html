@@ -163,19 +163,43 @@
             opacity: 1;
         }
 
-        /* Modify body style to support transparency */
         body {
             position: relative;
             background: none;
+            padding-bottom: 60px; /* Added space for the footer */
         }
 
-        /* Add overlay to improve content readability */
         .content-overlay {
             position: relative;
             z-index: 1;
-            /* background: rgba(255, 255, 255, 0.01); */
             min-height: 50vh;
-            /* backdrop-filter: blur(5px); */
+        }
+
+        /* --- NEW: Styles for the small cookie banner --- */
+        #cookie-consent-banner {
+            position: fixed;
+            bottom: 50px; /* Positioned above the footer */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: none; /* Hidden by default */
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+        }
+        #cookie-consent-banner button {
+            background-color: #43c6ac;
+            color: #222;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -203,31 +227,59 @@
             <p>Your trip guide is here</p>
         </div>
         <div class="buttons">
-            <!-- <a href="addtrip.html"><button>add trip</button></a> -->
-            <a href="login.html"><button>Log in</button></a>
+            <a href="login.php"><button>Log in</button></a>
             <a href="signup.html"><button>Sign up</button></a>
         </div>
     </div>
     <div class="footer">
         <p>&copy; 2025 tripX. All rights reserved.</p>
     </div>
+
+    <!-- NEW: HTML for the cookie banner -->
+    <div id="cookie-consent-banner">
+        <span>This website uses cookies.</span>
+        <button id="accept-cookies-btn">Accept</button>
+    </div>
+
+    <!-- The original script remains untouched -->
     <script src="script.js"></script>
     <script>
         const bgSlides = document.querySelectorAll('.bg-slide');
         let currentBgSlide = 0;
 
         function changeBackground() {
-            // Remove active class from all slides
             bgSlides.forEach(slide => slide.classList.remove('active'));
-
-            // Add active class to next slide
             currentBgSlide = (currentBgSlide + 1) % bgSlides.length;
             bgSlides[currentBgSlide].classList.add('active');
         }
-
-        // Change background every 2 seconds
         setInterval(changeBackground, 4000);
+
+        // --- NEW: JavaScript to manage the cookie banner ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const consentBanner = document.getElementById('cookie-consent-banner');
+            const acceptBtn = document.getElementById('accept-cookies-btn');
+
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            if (!getCookie('cookie_consent_accepted')) {
+                consentBanner.style.display = 'flex';
+            }
+
+            acceptBtn.addEventListener('click', function() {
+                const d = new Date();
+                d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = "cookie_consent_accepted=true;" + expires + ";path=/";
+                
+                consentBanner.style.display = 'none';
+            });
+        });
     </script>
 </body>
 
 </html>
+

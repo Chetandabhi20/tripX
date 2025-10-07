@@ -1,141 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Trip Planner</title>
+    <title>Sign Up - TripX</title>
     <style>
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .nav ul {
+            list-style: none;
+            background: #222;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav ul li a:hover {
+            background: #43c6ac;
+            color: #222;
+        }
+
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .bg-slide.active {
+            opacity: 1;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
         header {
             text-align: center;
-            margin-top: 25px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #dc7226 0%, #01280f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
         }
 
-        .signup-form {
-            display: grid;
-            margin: auto;
-            height: 70vh;
-            width: 25vw;
+        header h1 {
+            color: #222;
+            font-size: 2.2em;
+            margin-bottom: 10px;
         }
 
-        .signup-form input {
-            height: 50%;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .signup-form label {
-            position: relative;
-            top: 20px;
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #222;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #43c6ac;
+            outline: none;
+        }
+        
+        input.valid {
+            border-color: #2ecc71;
+        }
+
+        input.invalid {
+            border-color: #e74c3c;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
         }
 
         .button {
-            display: grid;
-            justify-content: center;
+            text-align: center;
+            margin: 25px 0;
         }
 
-        .button button {
-            height: 30px;
-            width: 80px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, rgb(67, 237, 249) 0%, yellow 100%);
+        button {
+            background: linear-gradient(135deg, #43c6ac 0%, #2c8c7c 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%; /* Make button full width */
         }
 
-        body {
-            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
-            min-height: 100vh;
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        footer {
+        .signup-container p {
+            text-align: center;
+            color: #666;
+        }
+
+        .signup-container a {
+            color: #43c6ac;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-container a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #222;
+            color: white;
             position: fixed;
             bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Create Your Account</h1>
-    </header>
+    <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="trips.html">Trips</a></li>
+            <li><a href="profile.html">Account</a></li>
+            <li><a href="exapnse.html">Expanse</a></li>
+            <li><a href="">Bookings</a></li>
+            <li><a href="photos.html">Photos</a></li>
+        </ul>
+    </div>
 
-    <form id="form" action="home.html">
-        <div class="signup-form">
+    <div class="background-slider">
+        <div class="bg-slide active" style="background-image: url('photos/train.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/rusikesh.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/whitehills.jpg')"></div>
+        <div class="bg-slide" style="background-image: url('photos/hill.jpg')"></div>
+    </div>
 
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+    <div class="signup-container">
+        <header>
+            <h1>Create Account</h1>
+        </header>
+        
+        <form id="signup-form" novalidate>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username (3-20 characters)" required minlength="3" maxlength="20">
+                <div class="error-message" id="username-error"></div>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" pattern="[6-9][0-9]{9}" placeholder="Enter your mobile number (10 digits)" required>
+                <div class="error-message" id="mobile-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="8-16 characters with letters and numbers" required minlength="8" maxlength="16">
+                <div class="error-message" id="password-error"></div>
+            </div>
 
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
-            <label for="mobile">Mobile Number:</label>
-            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm your password" required>
+                <div class="error-message" id="confirm-password-error"></div>
+            </div>
+            
             <div class="button">
                 <button type="submit">Sign Up</button>
             </div>
+            
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </form>
+    </div>
 
-            <p>Already have an account? <a href="login.html">Log in here</a>.</p>
-        </div>
-    </form>
-
-    <footer>
-        <p>&copy; 2025 Trip Planner. All rights reserved.</p>
-    </footer>
+    <div class="footer">
+        <p>&copy; 2025 TripX. All rights reserved.</p>
+    </div>
 
     <script>
-        document.getElementById("form").addEventListener("submit", function (e) {
-            const username = document.getElementById("username").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirm_password").value;
+        // Background slider functionality
+        const bgSlides = document.querySelectorAll('.bg-slide');
+        let currentBgSlide = 0;
 
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        function changeBackground() {
+            bgSlides.forEach(slide => slide.classList.remove('active'));
+            currentBgSlide = (currentBgSlide + 1) % bgSlides.length;
+            bgSlides[currentBgSlide].classList.add('active');
+        }
 
-            if (username === "") {
-                alert("Username is required.");
-                e.preventDefault();
-                return;
+        setInterval(changeBackground, 4000);
+
+        // --- *** CHANGE 3: ALL JAVASCRIPT LOGIC IS NOW WRAPPED IN DOMContentLoaded FOR RELIABILITY *** ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Get form and input elements
+            const form = document.getElementById('signup-form');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const mobile = document.getElementById('mobile');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
+
+            // --- Validation functions (no changes here) ---
+            function showError(input, message) {
+                const errorDiv = document.getElementById(input.id + '-error');
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = message;
+                input.classList.remove('valid');
+                input.classList.add('invalid');
             }
 
-            if (!emailPattern.test(email)) {
-                alert("Invalid email format.");
-                e.preventDefault();
-                return;
+            function showSuccess(input) {
+                const errorDiv = document.getElementById(input.id + '-error');
+                errorDiv.style.display = 'none';
+                input.classList.remove('invalid');
+                input.classList.add('valid');
             }
 
-            if (password.length < 6) {
-                alert("Password must be at least 6 characters long.");
-                e.preventDefault();
-                return;
+            function validateUsername() {
+                const value = username.value.trim();
+                if (value.length < 3) {
+                    showError(username, 'Username must be at least 3 characters'); return false;
+                }
+                if (value.length > 20) {
+                    showError(username, 'Username must not exceed 20 characters'); return false;
+                }
+                showSuccess(username); return true;
             }
 
-            if (password !== confirmPassword) {
-                alert("Passwords do not match.");
-                e.preventDefault();
-                return;
-            }
-            const mobile = document.getElementById("mobile").value.trim();
-            const indianMobilePattern = /^[6-9]\d{9}$/;
-
-            if (!indianMobilePattern.test(mobile)) {
-                alert("Please enter a valid Indian mobile number (10 digits starting with 6-9)");
-                e.preventDefault();
-                return;
+            function validateEmail() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value.trim())) {
+                    showError(email, 'Please enter a valid email address'); return false;
+                }
+                showSuccess(email); return true;
             }
 
+            function validateMobile() {
+                const mobileRegex = /^[6-9][0-9]{9}$/;
+                if (!mobileRegex.test(mobile.value.trim())) {
+                    showError(mobile, 'Please enter a valid 10-digit mobile number'); return false;
+                }
+                showSuccess(mobile); return true;
+            }
+
+            function validatePassword() {
+                const value = password.value;
+                if (value.length < 8) {
+                    showError(password, 'Password must be at least 8 characters'); return false;
+                }
+                if (value.length > 16) {
+                    showError(password, 'Password must not exceed 16 characters'); return false;
+                }
+                if (!/[A-Za-z]/.test(value) || !/[0-9]/.test(value)) {
+                    showError(password, 'Password must contain both letters and numbers'); return false;
+                }
+                showSuccess(password); return true;
+            }
+
+            function validateConfirmPassword() {
+                if (confirmPassword.value !== password.value) {
+                    showError(confirmPassword, 'Passwords do not match'); return false;
+                }
+                // Only show success if the field is not empty
+                if(confirmPassword.value.length > 0) {
+                    showSuccess(confirmPassword);
+                }
+                return true;
+            }
+
+            // --- Real-time validation listeners ---
+            username.addEventListener('input', validateUsername);
+            email.addEventListener('input', validateEmail);
+            mobile.addEventListener('input', validateMobile);
+            password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validateConfirmPassword);
+
+
+            // --- *** CHANGE 4: Form submission logic is now handled by an event listener *** ---
+            form.addEventListener('submit', function(event) {
+                // Prevent the form from submitting the traditional way (which causes a page reload)
+                event.preventDefault();
+
+                // Validate all fields on submit
+                const isUsernameValid = validateUsername();
+                const isEmailValid = validateEmail();
+                const isMobileValid = validateMobile();
+                const isPasswordValid = validatePassword();
+                const isConfirmPasswordValid = validateConfirmPassword();
+
+                // If any field is invalid, stop here
+                if (!isUsernameValid || !isEmailValid || !isMobileValid || !isPasswordValid || !isConfirmPasswordValid) {
+                    return;
+                }
+
+                // If all is valid, proceed with submission
+                const formData = new FormData(form);
+                const submitButton = form.querySelector('button');
+
+                // Show loading state
+                submitButton.disabled = true;
+                submitButton.textContent = 'Signing up...';
+
+                fetch('register.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Registration successful! Redirecting to login page...');
+                        form.reset(); // Clear the form fields
+                        // Clear validation styles
+                        [username, email, mobile, password, confirmPassword].forEach(input => {
+                            input.classList.remove('valid', 'invalid');
+                        });
+                        window.location.href = 'login.php'; // Redirect to login page
+                    } else {
+                        // Show server-side error message (e.g., "Email already exists")
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error submitting form. Please check your connection and try again.');
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    // Reset button state regardless of outcome
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Sign Up';
+                });
+            });
         });
     </script>
 </body>
-
 </html>
