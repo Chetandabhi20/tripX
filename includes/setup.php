@@ -44,30 +44,6 @@ if ($conn->query($sql_trips) === TRUE) {
     echo "<p>Error creating table 'trips': " . $conn->error . "</p>";
 }
 
-// Create admin user if it doesn't exist
-$admin_username = 'admin';
-$admin_email = 'admin@tripx.com';
-$admin_password = password_hash('admin123', PASSWORD_DEFAULT);
-$admin_mobile = '1234567890';
-
-$check_admin = "SELECT id FROM users WHERE username = 'admin' OR email = 'admin@tripx.com'";
-$result = $conn->query($check_admin);
-
-if ($result->num_rows == 0) {
-    $sql_admin = "INSERT INTO users (username, email, password, mobile, role) VALUES (?, ?, ?, ?, 'admin')";
-    $stmt = $conn->prepare($sql_admin);
-    $stmt->bind_param("ssss", $admin_username, $admin_email, $admin_password, $admin_mobile);
-    
-    if ($stmt->execute()) {
-        echo "<p>Admin user created successfully.</p>";
-    } else {
-        echo "<p>Error creating admin user: " . $stmt->error . "</p>";
-    }
-    $stmt->close();
-} else {
-    echo "<p>Admin user already exists.</p>";
-}
-
 // Close the connection
 $conn->close();
 ?>
